@@ -314,20 +314,13 @@
               ballMesh.style.left = (window.innerWidth / 2 + x * 10) + "px";
             });
             
-            window.addEventListener('deviceorientation', handleOrientation);
+           
 
-function handleOrientation(event) {
+            window.addEventListener('deviceorientation', function(event) {
   var x = event.gamma / 90;
   var y = event.beta / 90;
   ballMesh.position.x += x * 0.01;
   ballMesh.position.y += y * 0.01;
-}
-
-
-window.addEventListener("deviceorientation", (event) => {
-  // Update the ball mesh position based on the device orientation data
-  ballMesh.position.x = event.beta * ballSpeed;
-  ballMesh.position.y = -event.gamma * ballSpeed;
 });
 
 
