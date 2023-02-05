@@ -305,26 +305,22 @@
             })
             
            
-           var gyroData = null;
-
-// Get the gyro data
-window.addEventListener("deviceorientation", function(event) {
-  gyroData = event;
-});
-
-// Update the position of the mazeMesh based on the gyro data
-function updateMazeMeshPosition() {
-  if (!gyroData) return;
+          function updateWorldWithGyro() {
+  // Get the device's current orientation
+  var orientation = window.screen.orientation;
   
-  // Use the gyro data to update the position of the mazeMesh
-  mazeMesh.position.x += gyroData.beta / 100;
-  mazeMesh.position.y += gyroData.gamma / 100;
+  // Calculate the rotation based on the orientation
+  var rotation = new THREE.Euler(
+    THREE.Math.degToRad(orientation.beta),
+    THREE.Math.degToRad(orientation.gamma),
+    THREE.Math.degToRad(orientation.alpha),
+    "XYZ"
+  );
   
-  renderer.render(scene, camera);
+  // Apply the rotation to the ball and the maze
+  ballMesh.rotation.setFromRotationMatrix(new THREE.Matrix4().makeRotationFromEuler(rotation));
+  mazeMesh.rotation.setFromRotationMatrix(new THREE.Matrix4().makeRotationFromEuler(rotation));
 }
-
-// Call the updateMazeMeshPosition function every few milliseconds
-setInterval(updateMazeMeshPosition, 16);
 
 
 
