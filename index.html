@@ -304,19 +304,14 @@
 
             })
             
-            if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", function (event) {
-                var beta = event.beta;
-                var gamma = event.gamma;
-                var alpha = event.alpha;
-                
-                camera.position.x =  beta;
-                camera.position.y =  gamma;
-                camera.position.z =  alpha;
+            window.addEventListener("deviceorientation", function(event) {
+              var beta = event.beta;
+              var gamma = event.gamma;
 
-                camera.lookAt(new THREE.Vector3(0, 0, 0));
+              // Use the beta and gamma values to control the camera
+              camera.rotation.x = -beta * (Math.PI / 180);
+              camera.rotation.y = gamma * (Math.PI / 180);
             });
-            }
 
         </script>
     
