@@ -1,18 +1,5 @@
 // Three.js - http://github.com/mrdoob/three.js
 'use strict';var THREE=THREE||{REVISION:"49"};self.Int32Array||(self.Int32Array=Array,self.Float32Array=Array);
-if (window.DeviceOrientationEvent) {
-  window.addEventListener("deviceorientation", function (event) {
-    var beta = event.beta;
-    var gamma = event.gamma;
-    var alpha = event.alpha;
-    
-    camera.position.x =  beta;
-    camera.position.y =  gamma;
-    camera.position.z =  alpha;
-
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
-  });
-}
 
 
 (function(){for(var a=0,b=["ms","moz","webkit","o"],c=0;c<b.length&&!window.requestAnimationFrame;++c){window.requestAnimationFrame=window[b[c]+"RequestAnimationFrame"];window.cancelAnimationFrame=window[b[c]+"CancelAnimationFrame"]||window[b[c]+"CancelRequestAnimationFrame"]}if(!window.requestAnimationFrame)window.requestAnimationFrame=function(b){var c=Date.now(),f=Math.max(0,16-(c-a)),g=window.setTimeout(function(){b(c+f)},f);a=c+f;return g};if(!window.cancelAnimationFrame)window.cancelAnimationFrame=
