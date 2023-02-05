@@ -312,6 +312,20 @@
               camera.rotation.x = -beta * (Math.PI / 180);
               camera.rotation.y = gamma * (Math.PI / 180);
             });
+            
+            window.addEventListener("deviceorientation", handleOrientation, true);
+
+            function handleOrientation(event) {
+                var x = event.beta;  // In degree in the range [-180,180]
+                var y = event.gamma; // In degree in the range [-90,90]
+
+                // Use the x and y values to update the position of the ball
+                ballMesh.position.x += x * 0.01;
+                ballMesh.position.y += y * 0.01;
+
+                // You can add additional constraints or logic as needed
+            }
+
 
         </script>
     
