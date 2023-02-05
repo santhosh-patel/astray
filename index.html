@@ -326,6 +326,13 @@
                 // You can add additional constraints or logic as needed
             }
             
+            window.addEventListener("deviceorientation", function(event) {
+      x = event.gamma;
+      y = event.beta;
+
+      ballMesh.style.top = (window.innerHeight / 2 + y * 10) + "px";
+      ballMesh.style.left = (window.innerWidth / 2 + x * 10) + "px";
+    });
             
             
 
