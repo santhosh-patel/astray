@@ -314,6 +314,15 @@
               ballMesh.style.left = (window.innerWidth / 2 + x * 10) + "px";
             });
             
+            window.addEventListener('deviceorientation', handleOrientation);
+
+function handleOrientation(event) {
+  var x = event.gamma / 90;
+  var y = event.beta / 90;
+  ballMesh.position.x += x * 0.01;
+  ballMesh.position.y += y * 0.01;
+}
+
             
 
         </script>
