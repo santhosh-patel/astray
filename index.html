@@ -305,29 +305,27 @@
             })
             
            
-            
-            function moveMazeMesh(gyroX, gyroY) {
-  mazeMesh.position.x -= gyroY * 0.01;
-  mazeMesh.position.y += gyroX * 0.01;
+           var gyroData = null;
+
+// Get the gyro data
+window.addEventListener("deviceorientation", function(event) {
+  gyroData = event;
+});
+
+// Update the position of the mazeMesh based on the gyro data
+function updateMazeMeshPosition() {
+  if (!gyroData) return;
+  
+  // Use the gyro data to update the position of the mazeMesh
+  mazeMesh.position.x += gyroData.beta / 100;
+  mazeMesh.position.y += gyroData.gamma / 100;
+  
+  renderer.render(scene, camera);
 }
 
-            
-            window.addEventListener("deviceorientation", function(event) {
-              x = event.gamma;
-              y = event.beta;
+// Call the updateMazeMeshPosition function every few milliseconds
+setInterval(updateMazeMeshPosition, 16);
 
-              moveMazeMesh.style.top = (window.innerHeight / 2 + y * 10) + "px";
-              moveMazeMesh.style.left = (window.innerWidth / 2 + x * 10) + "px";
-            });
-            
-           
-
-            window.addEventListener('deviceorientation', function(event) {
-  var x = event.gamma / 90;
-  var y = event.beta / 90;
-  moveMazeMesh.position.x += x * 0.01;
-  moveMazeMesh.position.y += y * 0.01;
-});
 
 
         </script>
