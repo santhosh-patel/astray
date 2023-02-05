@@ -325,7 +325,40 @@
 
                 // You can add additional constraints or logic as needed
             }
+            
+            
+            import processing.data.*;
+import processing.sensors.*;
 
+Accelerometer accelerometer;
+float x, y;
+float ballX, ballY;
+float ballSize = 20;
+
+void setup() {
+  size(displayWidth, displayHeight);
+  accelerometer = new Accelerometer(this);
+  ballX = width/2;
+  ballY = height/2;
+}
+
+void draw() {
+  background(255);
+  x = accelerometer.getX();
+  y = accelerometer.getY();
+  ballX += x;
+  ballY -= y;
+  if (ballX < 0 || ballX > width) {
+    ballX -= x;
+  }
+  if (ballY < 0 || ballY > height) {
+    ballY += y;
+  }
+  ellipse(ballX, ballY, ballSize, ballSize);
+}
+
+            
+            
 
         </script>
     
