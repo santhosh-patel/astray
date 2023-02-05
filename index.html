@@ -306,6 +306,12 @@
             
            
             
+            function moveMazeMesh(gyroX, gyroY) {
+  mazeMesh.position.x -= gyroY * 0.01;
+  mazeMesh.position.y += gyroX * 0.01;
+}
+
+            
             window.addEventListener("deviceorientation", function(event) {
               x = event.gamma;
               y = event.beta;
