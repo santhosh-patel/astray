@@ -323,7 +323,26 @@ function handleOrientation(event) {
   ballMesh.position.y += y * 0.01;
 }
 
-            
+            let ballMesh;
+let ballGeometry;
+let ballMaterial;
+let ballSpeed = 0.1;
+
+// Create a ball mesh using Three.js
+ballGeometry = new THREE.SphereGeometry(5, 32, 32);
+ballMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+ballMesh = new THREE.Mesh(ballGeometry, ballMaterial);
+
+// Add the ball mesh to the scene
+scene.add(ballMesh);
+
+// Handle device orientation changes
+window.addEventListener("deviceorientation", (event) => {
+  // Update the ball mesh position based on the device orientation data
+  ballMesh.position.x = event.beta * ballSpeed;
+  ballMesh.position.y = -event.gamma * ballSpeed;
+});
+
 
         </script>
     
